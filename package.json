@@ -1,0 +1,72 @@
+{
+  "name": "@dxos/random-access-multi-storage",
+  "version": "0.0.1",
+  "description": "Multiple random storage types.",
+  "main": "index.js",
+  "browser": "dist/es/browser.js",
+  "scripts": {
+    "build": "yarn run clean && babel ./src --out-dir ./dist/es --ignore \"**/*.test.js\" --source-maps inline",
+    "build:watch": "yarn run clean && yarn run build --watch",
+    "clean": "del-cli dist",
+    "coverage": "npm test -- --coverage",
+    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
+    "lint": "semistandard 'src/**/*.js'",
+    "prepublishOnly": "npm run test && npm run build",
+    "test": "jest --verbose --passWithNoTests",
+    "test:serve": "webpack-dev-server --mode development",
+    "posttest": "npm run lint"
+  },
+  "browserslist": [
+    "> 5%"
+  ],
+  "license": "GPL-3.0",
+  "jest": {
+    "preset": "jest-puppeteer",
+    "globals": {
+      "PATH": "http://localhost:8099"
+    }
+  },
+  "dependencies": {
+    "del": "^5.1.0",
+    "pify": "^4.0.1",
+    "random-access-chrome-file": "^1.1.3",
+    "random-access-file": "^2.1.3",
+    "random-access-idb": "^1.2.1",
+    "random-access-memory": "^3.1.1",
+    "random-access-web": "^2.0.3",
+    "source-map-support": "^0.5.16"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "coveralls": "^3.0.7",
+    "del-cli": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.5.0",
+    "jest-puppeteer": "^4.4.0",
+    "puppeteer": "^2.0.0",
+    "semistandard": "14.2.0",
+    "tempy": "^0.3.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "semistandard": {
+    "parser": "babel-eslint",
+    "env": [
+      "jest",
+      "node",
+      "browser"
+    ]
+  }
+}
