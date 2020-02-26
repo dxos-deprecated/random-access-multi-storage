@@ -1,5 +1,5 @@
 //
-// Copyright 2019 Wireline, Inc.
+// Copyright 2020 DxOS.
 //
 
 import { createStorage as _createStorage } from './storage';
