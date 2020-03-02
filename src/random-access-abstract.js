@@ -4,6 +4,9 @@
 
 import pify from 'pify';
 
+/**
+ * Base class for all storage types.
+ */
 export class RandomAccessAbstract {
   constructor (root) {
     this._root = root;
@@ -17,7 +20,10 @@ export class RandomAccessAbstract {
   }
 
   async close () {
-    return Promise.all(Array.from(this._files.values()).map(file => pify(file.close.bind(file))().catch(() => {})));
+    return Promise.all(
+      Array.from(this._files.values())
+        .map(file => pify(file.close.bind(file))().catch(err => console.error(err.message)))
+    );
   }
 
   async destroy () {
@@ -32,11 +38,11 @@ export class RandomAccessAbstract {
 
   // eslint-disable-next-line class-methods-use-this
   _create () {
-    throw new Error('Missing implementation.');
+    throw new Error('Not implemented.');
   }
 
   // eslint-disable-next-line class-methods-use-this
   async _destroy () {
-    throw new Error('Missing implementation.');
+    throw new Error('Not implemented.');
   }
 }

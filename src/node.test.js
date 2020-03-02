@@ -2,16 +2,15 @@
 // Copyright 2020 DxOS.
 //
 
-import { promises as fs, constants } from 'fs';
 import crypto from 'crypto';
-import path from 'path';
-
-import pify from 'pify';
 import del from 'del';
+import { promises as fs, constants } from 'fs';
+import path from 'path';
+import pify from 'pify';
 
-import { createStorage, STORAGE_RAM, STORAGE_FILE, STORAGE_IDB } from '.';
+import { createStorage, STORAGE_MEMORY, STORAGE_NODE, STORAGE_IDB } from './node';
 
-const ROOT_DIRECTORY = path.resolve(path.join(__dirname, '..', '.temp', 'index.test'));
+const ROOT_DIRECTORY = path.resolve(path.join(__dirname, '..', 'out', 'index.test'));
 
 const temp = () => path.join(ROOT_DIRECTORY, crypto.randomBytes(32).toString('hex'));
 
@@ -23,12 +22,12 @@ const write = async (file) => {
 
 afterAll(() => del(ROOT_DIRECTORY));
 
-describe('testing node storages', () => {
-  test('create a storage with node file by default', async () => {
+describe('testing node storage types', () => {
+  test('create storage with node file by default', async () => {
     const directory = temp();
     const storage = createStorage(directory);
     expect(storage.root).toBe(directory);
-    expect(storage.type).toBe(STORAGE_FILE);
+    expect(storage.type).toBe(STORAGE_NODE);
 
     // Check write a file
     const file = storage('file1');
@@ -41,9 +40,9 @@ describe('testing node storages', () => {
   });
 
   test('create a storage with ram type', async () => {
-    const storage = createStorage('./memory', STORAGE_RAM);
-    expect(storage.root).toBe('./memory');
-    expect(storage.type).toBe(STORAGE_RAM);
+    const storage = createStorage('testing', STORAGE_MEMORY);
+    expect(storage.root).toBe('testing');
+    expect(storage.type).toBe(STORAGE_MEMORY);
 
     const file = storage('file1');
     await write(file);
@@ -54,7 +53,7 @@ describe('testing node storages', () => {
     expect(storage._storage._files.size).toBe(0);
   });
 
-  test('should throw an assert error if type not found', () => {
-    expect(() => createStorage('./error', STORAGE_IDB)).toThrow(/not found/);
+  test('should throw an assert error if invalid type for platform', () => {
+    expect(() => createStorage('error', STORAGE_IDB)).toThrow(/Invalid type/);
   });
 });

@@ -1,10 +1,14 @@
+//
+// Copyright 2020 DxOS.
+//
+
 /* global page, PATH */
 
-import { STORAGE_RAM, STORAGE_CHROME, STORAGE_IDB } from './storage-types';
+import { STORAGE_MEMORY, STORAGE_CHROME, STORAGE_IDB } from './storage-types';
 
 jest.setTimeout(50000);
 
-const DIRECTORY = 'root-test';
+const ROOT_DIRECTORY = 'testing';
 
 const testWrite = async (page) => {
   await expect(page.evaluate(() => {
@@ -44,9 +48,9 @@ describe('testing google-chrome storages', () => {
       const { createStorage } = window.testModule;
       window.storage = createStorage(root);
       return window.storage;
-    }, DIRECTORY);
+    }, ROOT_DIRECTORY);
 
-    expect(storage.root).toBe(DIRECTORY);
+    expect(storage.root).toBe(ROOT_DIRECTORY);
     expect(storage.type).toBe(STORAGE_CHROME);
 
     await testWrite(page);
@@ -73,9 +77,9 @@ describe('testing google-chrome storages', () => {
       const { createStorage } = window.testModule;
       window.storage = createStorage(root, type);
       return window.storage;
-    }, DIRECTORY, STORAGE_IDB);
+    }, ROOT_DIRECTORY, STORAGE_IDB);
 
-    expect(storage.root).toBe(DIRECTORY);
+    expect(storage.root).toBe(ROOT_DIRECTORY);
     expect(storage.type).toBe(STORAGE_IDB);
 
     await testWrite(page);
@@ -100,11 +104,11 @@ describe('testing google-chrome storages', () => {
       };
     });
 
-    await expect(page.evaluate(root => window.testExists(root), DIRECTORY)).resolves.toBe(true);
+    await expect(page.evaluate(root => window.testExists(root), ROOT_DIRECTORY)).resolves.toBe(true);
 
     await testDestroy(page);
 
-    await expect(page.evaluate(root => window.testExists(root), DIRECTORY)).resolves.toBe(false);
+    await expect(page.evaluate(root => window.testExists(root), ROOT_DIRECTORY)).resolves.toBe(false);
   });
 
   test('ram storage', async () => {
@@ -112,10 +116,10 @@ describe('testing google-chrome storages', () => {
       const { createStorage } = window.testModule;
       window.storage = createStorage(root, type);
       return window.storage;
-    }, DIRECTORY, STORAGE_RAM);
+    }, ROOT_DIRECTORY, STORAGE_MEMORY);
 
-    expect(storage.root).toBe(DIRECTORY);
-    expect(storage.type).toBe(STORAGE_RAM);
+    expect(storage.root).toBe(ROOT_DIRECTORY);
+    expect(storage.type).toBe(STORAGE_MEMORY);
 
     await testWrite(page);
 

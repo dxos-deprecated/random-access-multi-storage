@@ -4,8 +4,13 @@
 
 import randomAccessIdb from 'random-access-idb';
 
-import { RandomAccessAbstract } from './random-access-abstract';
+import { RandomAccessAbstract } from '../random-access-abstract';
 
+/**
+ * IndexedDB implementation.
+ * To inspect storage: Dev tools > Application > IndexedDB.
+ * https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+ */
 export class IDB extends RandomAccessAbstract {
   constructor (root) {
     super(root);
@@ -13,24 +18,25 @@ export class IDB extends RandomAccessAbstract {
     this._fileStorage = null;
   }
 
-  _create (file) {
+  _create (filename) {
     if (this._files.size === 0) {
       this._fileStorage = this._createFileStorage();
     }
 
-    const f = this._fileStorage(file);
-    const oldClose = f.close.bind(f);
-    f.close = (cb) => {
-      this._files.delete(f);
+    const file = this._fileStorage(filename);
 
+    // Monkeypatch close function.
+    const defaultClose = file.close.bind(file);
+    file.close = (cb) => {
+      this._files.delete(file);
       if (this._files.size === 0) {
-        return oldClose(cb);
+        return defaultClose(cb);
       }
 
       return cb();
     };
 
-    return f;
+    return file;
   }
 
   async _destroy () {
