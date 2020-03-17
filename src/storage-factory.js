@@ -4,7 +4,7 @@
 
 import assert from 'assert';
 
-import { STORAGE_NODE, STORAGE_CHROME, STORAGE_MOZILLA, STORAGE_IDB } from './storage-types';
+import { STORAGE_NODE, STORAGE_CHROME, STORAGE_FIREFOX, STORAGE_IDB } from './storage-types';
 
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null;
 const isBrowser = typeof window !== 'undefined';
@@ -20,32 +20,42 @@ const defaultStorageType = () => {
     }
 
     if (window.IDBMutableFile) {
-      return STORAGE_MOZILLA;
+      return STORAGE_FIREFOX;
     }
 
     return STORAGE_IDB;
   }
 
-  throw new Error('Unknown platform');
+  throw new Error('Unknown platform.');
 };
 
+/**
+ * Returns a factory for creating random-access storage functions.
+ *
+ * @typedef {Function} StorageFactory
+ * @property {string} root
+ * @property {string} type
+ * @property {Function} destroy
+ *
+ * @param {Object} storageTypes
+ * @returns {StorageFactory}
+ */
 export const createStorageFactory = storageTypes => (root, type = defaultStorageType()) => {
   assert(typeof root === 'string');
   assert(storageTypes[type], `Invalid type: ${type}`);
 
+  /** @type {RandomAccessAbstract} */
   const storage = new storageTypes[type](root);
 
-  function randomAccessStorage (file) {
+  function factory (file) {
     return storage.create(file);
   }
 
-  // TODO(burdon): We should have a wrapper rather than adding properties to other objects.
-  randomAccessStorage.destroy = () => storage.destroy();
-  randomAccessStorage.root = root;
-  randomAccessStorage.type = type;
+  factory._storage = storage;
 
-  // TODO(burdon): Remove since only used for testing.
-  randomAccessStorage._storage = storage;
+  factory.root = root;
+  factory.type = type;
+  factory.destroy = () => storage.destroy();
 
-  return randomAccessStorage;
+  return factory;
 };

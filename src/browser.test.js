@@ -4,7 +4,7 @@
 
 /* global page, PATH */
 
-import { STORAGE_MEMORY, STORAGE_CHROME, STORAGE_IDB } from './storage-types';
+import { STORAGE_RAM, STORAGE_CHROME, STORAGE_IDB } from './storage-types';
 
 jest.setTimeout(50000);
 
@@ -116,10 +116,10 @@ describe('testing google-chrome storages', () => {
       const { createStorage } = window.testModule;
       window.storage = createStorage(root, type);
       return window.storage;
-    }, ROOT_DIRECTORY, STORAGE_MEMORY);
+    }, ROOT_DIRECTORY, STORAGE_RAM);
 
     expect(storage.root).toBe(ROOT_DIRECTORY);
-    expect(storage.type).toBe(STORAGE_MEMORY);
+    expect(storage.type).toBe(STORAGE_RAM);
 
     await testWrite(page);
 

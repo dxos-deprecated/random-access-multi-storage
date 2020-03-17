@@ -3,7 +3,7 @@
 //
 
 import { createStorageFactory } from './storage-factory';
-import { STORAGE_MEMORY, STORAGE_IDB, STORAGE_CHROME, STORAGE_MOZILLA } from './storage-types';
+import { STORAGE_RAM, STORAGE_IDB, STORAGE_CHROME, STORAGE_FIREFOX } from './storage-types';
 
 import { Memory } from './type/memory';
 import { IDB } from './type/idb';
@@ -15,10 +15,10 @@ import { Mozilla } from './type/mozilla';
 // https://chrome.google.com/webstore/detail/clear-cache-for-chrome/lcebokhepdpopanpieoopnjiehmoabfp?hl=en-US
 
 const storageTypes = {
-  [STORAGE_MEMORY]: Memory,
+  [STORAGE_RAM]: Memory,
   [STORAGE_IDB]: IDB,
   [STORAGE_CHROME]: Chrome,
-  [STORAGE_MOZILLA]: Mozilla
+  [STORAGE_FIREFOX]: Mozilla
 };
 
 export * from './storage-types';

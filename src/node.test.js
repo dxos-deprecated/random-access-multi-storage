@@ -8,7 +8,7 @@ import { promises as fs, constants } from 'fs';
 import path from 'path';
 import pify from 'pify';
 
-import { createStorage, STORAGE_MEMORY, STORAGE_NODE, STORAGE_IDB } from './node';
+import { createStorage, STORAGE_RAM, STORAGE_NODE, STORAGE_IDB } from './node';
 
 const ROOT_DIRECTORY = path.resolve(path.join(__dirname, '..', 'out', 'index.test'));
 
@@ -40,9 +40,9 @@ describe('testing node storage types', () => {
   });
 
   test('create a storage with ram type', async () => {
-    const storage = createStorage('testing', STORAGE_MEMORY);
+    const storage = createStorage('testing', STORAGE_RAM);
     expect(storage.root).toBe('testing');
-    expect(storage.type).toBe(STORAGE_MEMORY);
+    expect(storage.type).toBe(STORAGE_RAM);
 
     const file = storage('file1');
     await write(file);
