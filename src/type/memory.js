@@ -5,8 +5,11 @@
 import pify from 'pify';
 import ram from 'random-access-memory';
 
-import { RandomAccessAbstract } from './random-access-abstract';
+import { RandomAccessAbstract } from '../random-access-abstract';
 
+/**
+ * In-memory storage for caching and testing.
+ */
 export class Memory extends RandomAccessAbstract {
   // eslint-disable-next-line class-methods-use-this
   _create () {

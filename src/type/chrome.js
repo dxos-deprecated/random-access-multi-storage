@@ -4,7 +4,7 @@
 
 import randomAccessChrome from 'random-access-chrome-file';
 
-import { RandomAccessAbstract } from './random-access-abstract';
+import { RandomAccessAbstract } from '../random-access-abstract';
 
 const requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 const persistentStorage = navigator.persistentStorage || navigator.webkitPersistentStorage;
@@ -42,7 +42,12 @@ async function removeDirectory (directory) {
   await removeEntry(directory);
 }
 
-export class ChromeFile extends RandomAccessAbstract {
+/**
+ * Chrome-specific storage.
+ * To inspect storage: Dev tools > Application > Local Storage.
+ * https://github.com/random-access-storage/random-access-chrome-file
+ */
+export class Chrome extends RandomAccessAbstract {
   constructor (root) {
     super(root);
 
@@ -70,8 +75,8 @@ export class ChromeFile extends RandomAccessAbstract {
     return new Promise((resolve, reject) => fs.root.getDirectory(this._root, { create: false }, resolve, reject));
   }
 
-  _create (file) {
-    return randomAccessChrome(`${this._root}/${file}`);
+  _create (filename) {
+    return randomAccessChrome(`${this._root}/${filename}`);
   }
 
   async _destroy () {

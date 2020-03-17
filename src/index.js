@@ -2,15 +2,6 @@
 // Copyright 2020 DxOS.
 //
 
-import { createStorage as _createStorage } from './storage';
-import { STORAGE_FILE, STORAGE_RAM } from './storage-types';
-import { Memory } from './memory';
-import { File } from './file';
+// The default module is for Node (otherwise import browser).
 
-const storageTypes = {
-  [STORAGE_RAM]: Memory,
-  [STORAGE_FILE]: File
-};
-
-export * from './storage-types';
-export const createStorage = _createStorage(storageTypes);
+export * from './node';

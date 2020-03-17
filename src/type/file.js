@@ -2,16 +2,18 @@
 // Copyright 2020 DxOS.
 //
 
-import path from 'path';
-
-import raf from 'random-access-file';
 import del from 'del';
+import path from 'path';
+import raf from 'random-access-file';
 
-import { RandomAccessAbstract } from './random-access-abstract';
+import { RandomAccessAbstract } from '../random-access-abstract';
 
+/**
+ * Node specific file storage.
+ */
 export class File extends RandomAccessAbstract {
-  _create (file) {
-    return raf(path.join(this._root, file));
+  _create (filename) {
+    return raf(path.join(this._root, filename));
   }
 
   _destroy () {
