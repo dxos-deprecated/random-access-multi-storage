@@ -4,6 +4,10 @@
   "description": "Multiple random storage types.",
   "main": "index.js",
   "browser": "dist/es/browser.js",
+  "files": [
+    "dist",
+    "index.js"
+  ],
   "scripts": {
     "build": "yarn run clean && babel ./src --out-dir ./dist/es --ignore \"**/*.test.js\" --source-maps inline",
     "build:watch": "yarn run clean && yarn run build --watch",
