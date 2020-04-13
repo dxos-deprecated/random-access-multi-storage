@@ -29,7 +29,7 @@
   "dependencies": {
     "del": "^5.1.0",
     "pify": "^4.0.1",
-    "random-access-chrome-file": "^1.1.3",
+    "random-access-chrome-file": "https://github.com/dxos/random-access-chrome-file",
     "random-access-file": "^2.1.3",
     "random-access-idb": "^1.2.1",
     "random-access-memory": "^3.1.1",

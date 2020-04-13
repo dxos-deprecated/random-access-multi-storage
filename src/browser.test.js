@@ -30,7 +30,7 @@ const testDestroy = async (page) => {
   })).resolves.toBe(0);
 };
 
-describe('testing google-chrome storages', () => {
+describe('testing browser storages', () => {
   beforeEach(async () => {
     await page.goto(PATH, { waitUntil: 'load' });
     await page.evaluate(() => {
