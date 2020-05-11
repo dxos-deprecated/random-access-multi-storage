@@ -3,7 +3,6 @@
 //
 
 import del from 'del';
-import path from 'path';
 import raf from 'random-access-file';
 
 import { RandomAccessAbstract } from '../random-access-abstract';

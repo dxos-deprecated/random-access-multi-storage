@@ -4,7 +4,7 @@
 
 const pify = require('pify');
 const hrtime = require('browser-process-hrtime');
-const Bowser = require('bowser')
+const Bowser = require('bowser');
 
 const { createStorage, STORAGE_RAM, STORAGE_IDB } = require('.');
 
