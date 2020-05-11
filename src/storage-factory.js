@@ -47,8 +47,8 @@ export const createStorageFactory = storageTypes => (root, type = defaultStorage
   /** @type {RandomAccessAbstract} */
   const storage = new storageTypes[type](root);
 
-  function factory (file) {
-    return storage.create(file);
+  function factory (file, opts = {}) {
+    return storage.create(file, opts);
   }
 
   factory._storage = storage;

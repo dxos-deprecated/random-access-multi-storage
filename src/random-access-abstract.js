@@ -13,8 +13,8 @@ export class RandomAccessAbstract {
     this._files = new Set();
   }
 
-  create (filename) {
-    const file = this._create(filename);
+  create (filename, opts = {}) {
+    const file = this._create(filename, opts);
     this._files.add(file);
     return file;
   }

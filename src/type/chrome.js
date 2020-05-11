@@ -75,8 +75,8 @@ export class Chrome extends RandomAccessAbstract {
     return new Promise((resolve, reject) => fs.root.getDirectory(this._root, { create: false }, resolve, reject));
   }
 
-  _create (filename) {
-    return randomAccessChrome(`${this._root}/${filename}`);
+  _create (filename, opts = {}) {
+    return randomAccessChrome(`${this._root}/${filename}`, opts);
   }
 
   async _destroy () {

@@ -18,12 +18,12 @@ export class IDB extends RandomAccessAbstract {
     this._fileStorage = null;
   }
 
-  _create (filename) {
+  _create (filename, opts = {}) {
     if (this._files.size === 0) {
       this._fileStorage = this._createFileStorage();
     }
 
-    const file = this._fileStorage(filename);
+    const file = this._fileStorage(filename, opts);
 
     // Monkeypatch close function.
     const defaultClose = file.close.bind(file);
