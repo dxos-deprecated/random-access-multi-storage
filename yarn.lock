@@ -34,7 +34,7 @@
     invariant "^2.2.4"
     semver "^5.5.0"
 
-"@babel/core@^7.0.0", "@babel/core@^7.1.0":
+"@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.4.5":
   version "7.9.6"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.9.6.tgz#d9aa1f580abf3b2286ef40b6904d390904c63376"
   integrity sha512-nD3deLvbsApbHAHttzIssYqgb883yU/d9roe4RZymBCDaZryMJDbptVpEpeQuRh4BJ+SYI8le9YGxKvFEvl1Wg==
@@ -802,11 +802,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@dxos/browser-runner@^1.0.0-beta.3":
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@dxos/browser-runner/-/browser-runner-1.0.0-beta.3.tgz#b05a3dca62e5a9aec817d43ff7b62bd4a0776484"
-  integrity sha512-+vCyFzP1y+AUjmAS7V/N2PIqFZW99U+s3VvIES1J4UzoToSCVMzhZyhrWKLGRXNR7cz4GldOx+nqRR3BApZVjA==
+"@dxos/browser-runner@^1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@dxos/browser-runner/-/browser-runner-1.0.0-beta.6.tgz#174fa11b1994f8e14a9ea325b3f35986f908bc0e"
+  integrity sha512-PdRelgAyqivGUVs+kORXhi77zqBZcJy37hSiNI+i9FtzWhiEa1CWOr7SBpERwzOhyA6A6A9SW/vRgwWr/H0q5w==
   dependencies:
+    "@babel/core" "^7.4.5"
     babel-loader "^8.1.0"
     debug "^4.1.1"
     dotenv-webpack "^1.7.0"
@@ -5878,6 +5879,11 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
+mutexify@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/mutexify/-/mutexify-1.3.0.tgz#b32bee9319050963cf6b5d5bce7fbd6ea08ab609"
+  integrity sha512-WNPlgZ3AHETGSa4jeRP4aW6BPQ/a++MwoMFFIgrDg80+m70mbxuNOrevANfBDmur82zxTFAY3OwvMAvqrkV2sA==
+
 nan@^2.12.1:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.1.tgz#d7be34dfa3105b91494c3147089315eff8874b01"
@@ -6801,11 +6807,18 @@ quick-lru@^1.0.0:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
   integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
 
-random-access-chrome-file@^1.1.2, random-access-chrome-file@^1.1.4:
+random-access-chrome-file@^1.1.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/random-access-chrome-file/-/random-access-chrome-file-1.1.4.tgz#059bdada8429203f284d9aa48b3c0f6819701fed"
   integrity sha512-xZW1BT26g+gl8AF1kC/oXX97jCMVoLIbf6yx4eVMwLgOddGhhkJygimnfERSEmhUKiGs3DTymNao6wf/P23Nkg==
   dependencies:
+    random-access-storage "^1.3.0"
+
+random-access-chrome-file@dxos/random-access-chrome-file#tinchoz49/improve-performance:
+  version "1.1.4"
+  resolved "https://codeload.github.com/dxos/random-access-chrome-file/tar.gz/fa10329091074ed24dcfdac5bd744bfbf54ffd30"
+  dependencies:
+    mutexify "^1.3.0"
     random-access-storage "^1.3.0"
 
 random-access-file@^2.1.3:
