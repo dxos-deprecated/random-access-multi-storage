@@ -1,6 +1,6 @@
 {
   "name": "@dxos/random-access-multi-storage",
-  "version": "1.1.0-beta.3",
+  "version": "1.1.0-beta.4",
   "description": "Multiple random storage types.",
   "main": "index.js",
   "browser": "dist/es/browser.js",
