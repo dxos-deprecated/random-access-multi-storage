@@ -2,7 +2,7 @@
 // Copyright 2020 DxOS.
 //
 
-import randomAccessChrome from 'random-access-chrome-file';
+import randomAccessChrome from '@dxos/random-access-chrome-file';
 
 import { RandomAccessAbstract } from '../random-access-abstract';
 
