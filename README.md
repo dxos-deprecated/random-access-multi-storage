@@ -38,7 +38,7 @@ It creates a storage factory to create file storage based on `random-access-stor
 - `rootPath`: Root path to store the files.
 - `storageType`: Storage type. `Optional`.
 
-Available storages
+Available storages:
 
 - `browser`
   - `STORAGE_CHROME`: Store files using [random-access-chrome-file](https://github.com/dxos/random-access-chrome-file) and the [Chromium File System API](https://web.dev/native-file-system/). Default in Chrome.
