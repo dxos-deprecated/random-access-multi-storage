@@ -33,7 +33,7 @@ file.write(0, Buffer('hello'), err => {
 
 #### `createStorage(rootPath: String, storageType?: StorageType) => RandomAccessStorage`
 
-Creates a [RandomAccessStorage](https://github.com/random-access-storage/random-access-storage) based in the `storageType`. If `storageType` is not specified, it will return a default `RandomAccessStorage` depending on the environment as follows.
+Create a [RandomAccessStorage](https://github.com/random-access-storage/random-access-storage) based in the `storageType`. If `storageType` is not specified, return a default `RandomAccessStorage` depending on the environment.
 
 - `rootPath`: Root path to store the files.
 - `storageType`: Storage type.
