@@ -31,7 +31,14 @@ file.write(0, Buffer('hello'), err => {
 
 ## API
 
-#### Available storages
+#### `const storage = createStorage(rootPath, storageType)`
+
+It creates a storage factory to create file storage based on `random-access-storage`.
+
+- `rootPath`: Root path to store the files.
+- `storageType`: Storage type. `Optional`.
+
+Available storages
 
 - `browser`
   - `STORAGE_CHROME`: Store files using [random-access-chrome-file](https://github.com/dxos/random-access-chrome-file) and the [Chromium File System API](https://web.dev/native-file-system/). Default in Chrome.
@@ -41,13 +48,6 @@ file.write(0, Buffer('hello'), err => {
 - `node`
   - `STORAGE_NODE`: Store files in the real filesystem [random-access-file](https://github.com/random-access-storage/random-access-file). Default.
   - `STORAGE_RAM`: [random-access-memory](https://github.com/random-access-storage/random-access-memory).
-
-#### `const storage = createStorage(rootPath, storageType)`
-
-It creates a storage factory to create file storage based on `random-access-storage`.
-
-- `rootPath`: Root path to store the files.
-- `storageType`: Storage type. `Optional`.
 
 #### `const file = storage(filePath)`
 
