@@ -4,6 +4,7 @@
   "description": "Multiple random storage types.",
   "main": "index.js",
   "browser": "dist/es/browser.js",
+  "types": "index.d.ts",
   "files": [
     "dist",
     "index.js"
