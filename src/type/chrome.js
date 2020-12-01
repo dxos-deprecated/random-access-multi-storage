@@ -80,8 +80,14 @@ export class Chrome extends RandomAccessAbstract {
   }
 
   async _destroy () {
-    const dir = await this.getDirectory();
-
-    await removeDirectory(dir);
+    try {
+      const dir = await this.getDirectory();
+      await removeDirectory(dir);
+    } catch (e) {
+      // Code 8 == 'A requested file or directory could not be found at the time an operation was processed.'
+      if (e.code !== 8) {
+        throw e;
+      }
+    }
   }
 }
